@@ -55,7 +55,7 @@
   onMount(async () => {
     console.log('API', API_PREFIX);
     
-    let response;
+    let responseStats, responsePairs24h, responsePairs7d, responseTokens;
 
     // NOTE: This flow for UI load is simplified a bit by assuming if all project IDs got finalized in last processed epoch.
     // It is however possible to build a more robust UI that can handle the case where some project IDs are not finalized yet.
@@ -72,7 +72,7 @@
         epochInfoPairs7d = responsePairs7d.data;
         epochInfoTokens = responseTokens.data;
       } else {
-        throw new Error(JSON.stringify(response.data));
+        throw new Error(JSON.stringify(responseStats.data));
       }
     }
     catch (e){
