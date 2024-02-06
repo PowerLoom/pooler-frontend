@@ -30,7 +30,10 @@
   });
 
   let statsData = null;
-  let epochInfo = null;
+  let epochInfoStats = null;
+  let epochInfoPairs24h = null;
+  let epochInfoPairs7d = null;
+  let epochInfoTokens = null;
   let pairsData = {data:[]};
   let pairsData7d = {};
   let pairsData7dSet = false;
@@ -58,10 +61,16 @@
     // It is however possible to build a more robust UI that can handle the case where some project IDs are not finalized yet.
 
     try {
-      response = await axios.get(API_PREFIX+`/last_finalized_epoch/${stats_project_id}`);
+      responseStats = await axios.get(API_PREFIX+`/last_finalized_epoch/${stats_project_id}`);
+      responsePairs24h = await axios.get(API_PREFIX+`/last_finalized_epoch/${top_pairs_project_id}`);
+      responsePairs7d = await axios.get(API_PREFIX+`/last_finalized_epoch/${top_pairs_7d_project_id}`);
+      responseTokens = await axios.get(API_PREFIX+`/last_finalized_epoch/${top_tokens_project_id}`);
       console.log('got last finalized epoch', response.data);
-      if (response.data) {
-        epochInfo = response.data;
+      if (responseStats.data && responsePairs24h.data && responsePairs7d.data && responseTokens.data) {
+        epochInfoStats = responseStats.data;
+        epochInfoPairs24h = responsePairs24h.data;
+        epochInfoPairs7d = responsePairs7d.data;
+        epochInfoTokens = responseTokens.data;
       } else {
         throw new Error(JSON.stringify(response.data));
       }
@@ -71,7 +80,7 @@
     }
 
     try {
-      response = await axios.get(API_PREFIX+`/data/${epochInfo.epochId}/${stats_project_id}/`);
+      response = await axios.get(API_PREFIX+`/data/${epochInfoStats.epochId}/${stats_project_id}/`);
       console.log('got stats', response.data);
       if (response.data) {
         statsData = response.data;
@@ -86,7 +95,7 @@
       console.error('stats', e);
     }
     try {
-      response = await axios.get(API_PREFIX+`/data/${epochInfo.epochId}/${top_pairs_7d_project_id}/`);
+      response = await axios.get(API_PREFIX+`/data/${epochInfoPairs7d.epochId}/${top_pairs_7d_project_id}/`);
       console.log('got 7d top pairs', response.data);
       if (response.data) {
         if (response.data.complete){
@@ -105,7 +114,7 @@
       console.error('7d top pairs', e);
     }
     try {
-      response = await axios.get(API_PREFIX+`/cid/${epochInfo.epochId}/${top_tokens_project_id}/`);
+      response = await axios.get(API_PREFIX+`/cid/${epochInfoTokens.epochId}/${top_tokens_project_id}/`);
       console.log('got top tokens cid', response.data);
       if (response.data) {
         top_tokens_cid = response.data;
@@ -117,7 +126,7 @@
       console.error('top tokens cid', e);
     }
     try {
-      response = await axios.get(API_PREFIX+`/cid/${epochInfo.epochId}/${stats_project_id}/`);
+      response = await axios.get(API_PREFIX+`/cid/${epochInfoStats.epochId}/${stats_project_id}/`);
       console.log('got stats cid', response.data);
       if (response.data) {
         stats_cid = response.data;
@@ -141,7 +150,7 @@
       console.error('top pairs cid', e);
     }
     try {
-      response = await axios.get(API_PREFIX+`/cid/${epochInfo.epochId}/${top_pairs_7d_project_id}/`);
+      response = await axios.get(API_PREFIX+`/cid/${epochInfoPairs7d.epochId}/${top_pairs_7d_project_id}/`);
       console.log('got 7d top pairs cid', response.data);
       if (response.data) {
        top_pairs_7d_cid = response.data;
@@ -153,7 +162,7 @@
       console.error('7d top pairs cid', e);
     }
     try {
-      response = await axios.get(API_PREFIX+`/data/${epochInfo.epochId}/${top_pairs_project_id}/`);
+      response = await axios.get(API_PREFIX+`/data/${epochInfoPairs24h.epochId}/${top_pairs_project_id}/`);
       console.log('got pairs', response.data);
       pairsData = {
         block_height: epochInfo.blocknumber,
@@ -175,7 +184,7 @@
       }
     }
     try {
-      response = await axios.get(API_PREFIX+`/data/${epochInfo.epochId}/${top_tokens_project_id}/`);
+      response = await axios.get(API_PREFIX+`/data/${epochInfoTokens.epochId}/${top_tokens_project_id}/`);
       console.log('got tokens', response.data);
       tokenData = {
         block_height: epochInfo.blocknumber,
