@@ -138,7 +138,7 @@
       console.error('stats cid', e);
     }
     try {
-      response = await axios.get(API_PREFIX+`/cid/${epochInfo.epochId}/${top_pairs_project_id}/`);
+      response = await axios.get(API_PREFIX+`/cid/${epochInfoPairs24h.epochId}/${top_pairs_project_id}/`);
       console.log('got top pairs cid', response.data);
       if (response.data) {
         top_pairs_cid = response.data;
@@ -165,9 +165,9 @@
       response = await axios.get(API_PREFIX+`/data/${epochInfoPairs24h.epochId}/${top_pairs_project_id}/`);
       console.log('got pairs', response.data);
       pairsData = {
-        block_height: epochInfo.blocknumber,
-        block_timestamp_ms: epochInfo.timestamp*1000,
-        block_timestamp: new Date(epochInfo.timestamp*1000),
+        block_height: epochInfoPairs24h.blocknumber,
+        block_timestamp_ms: epochInfoPairs24h.timestamp*1000,
+        block_timestamp: new Date(epochInfoPairs24h.timestamp*1000),
         data: response.data.pairs.slice(0, 10),
         txHash: 0,
         begin_block_timestamp_7d: 0,
@@ -187,9 +187,9 @@
       response = await axios.get(API_PREFIX+`/data/${epochInfoTokens.epochId}/${top_tokens_project_id}/`);
       console.log('got tokens', response.data);
       tokenData = {
-        block_height: epochInfo.blocknumber,
-        block_timestamp_ms: epochInfo.timestamp*1000,
-        block_timestamp: new Date(epochInfo.timestamp*1000),
+        block_height: epochInfoTokens.blocknumber,
+        block_timestamp_ms: epochInfoTokens.timestamp*1000,
+        block_timestamp: new Date(epochInfoTokens.timestamp*1000),
         data: response.data.tokens.slice(0, 10),
         txHash: response.data.txHash,
         cid: response.data.cid
@@ -392,7 +392,7 @@
         <div class="ml-4">
           <h3 class="text-lg leading-6 font-medium text-gray-900">Top {V3 ? 'Pools' : 'Pairs'}</h3>
           <p class="text-sm text-gray-500">
-            {#if epochInfo }Synced to <a href="{$explorerPrefix}/block/{epochInfo.epochEnd}"class="text-indigo-800" target="_blank">{epochInfo.epochEnd}</a> <Time relative timestamp={pairsData.block_timestamp} />{#if (pairsData.block_timestamp_ms+600000) < (+new Date())} ⏳{/if}
+            {#if epochInfoPairs24h }Synced to <a href="{$explorerPrefix}/block/{epochInfoPairs24h.epochEnd}"class="text-indigo-800" target="_blank">{epochInfoPairs24h.epochEnd}</a> <Time relative timestamp={pairsData.block_timestamp} />{#if (pairsData.block_timestamp_ms+600000) < (+new Date())} ⏳{/if}
             {/if}
           </p>
         </div>
@@ -507,7 +507,7 @@
           <div class="ml-4">
             <h3 class="text-lg leading-6 font-medium text-gray-900">Top Tokens</h3>
             <p class="text-sm text-gray-500">
-              {#if epochInfo}Synced to <a href="{$explorerPrefix}/block/{epochInfo.epochEnd}"class="text-indigo-800" target="_blank">{epochInfo.epochEnd}</a> <Time relative timestamp={tokenData.block_timestamp} />{#if (tokenData.block_timestamp_ms+600000) < (+new Date())} ⏳{/if}
+              {#if epochInfoTokens}Synced to <a href="{$explorerPrefix}/block/{epochInfoTokens.epochEnd}"class="text-indigo-800" target="_blank">{epochInfoTokens.epochEnd}</a> <Time relative timestamp={tokenData.block_timestamp} />{#if (tokenData.block_timestamp_ms+600000) < (+new Date())} ⏳{/if}
               {/if}
             </p>
           </div>
