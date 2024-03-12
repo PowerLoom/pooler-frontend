@@ -340,8 +340,8 @@
 
         try {
             console.log("Requesting: ")
-            console.log(API_PREFIX+`/time_series/${epochInfo.epochId}/${start_time}/${step_seconds}/${apr_6h_project_id}/`)
-            response = await axios.get(API_PREFIX+`/time_series/${epochInfo.epochId}/${start_time}/${step_seconds}/${apr_6h_project_id}/`);
+            console.log(API_PREFIX+`/time_series/${epochInfo.epochId}/${start_time}/${step_seconds}/${apr_6h_project_id}`)
+            response = await axios.get(API_PREFIX+`/time_series/${epochInfo.epochId}/${start_time}/${step_seconds}/${apr_6h_project_id}`);
             console.log('got 6h data', response.data);
             if (response.data) {
                 aprData = response.data;
