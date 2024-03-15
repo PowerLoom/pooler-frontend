@@ -60,23 +60,23 @@
  ```
 -->
 <div class="min-h-full">
- <nav class="bg-white border-b border-gray-200">
-   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-     <div class="flex justify-between h-16">
-       <div class="flex">
-         <div class="flex-shrink-0 flex items-center">
-           <button on:click={() => {location.href ="/";
-           //showInfo.set(true);
-         }}>
-             <img class="block lg:hidden h-6 w-auto" src="./powerloom-logo.svg" alt="PowerLoom">
-             <img class="hidden lg:block h-7 w-auto" src="./powerloom-logo.svg" alt="PowerLoom">
-           </button>
-         </div>
-         <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
-           <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-           <a href="/" class="{slug == '' ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">
-             Overview
-           </a>
+  <nav class="bg-white border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex">
+          <div class="flex-shrink-0 flex items-center">
+            <button on:click={() => {location.href ="/";
+            //showInfo.set(true);
+          }}>
+              <img class="block lg:hidden h-6 w-auto" src="./powerloom-logo.svg" alt="PowerLoom">
+              <img class="hidden lg:block h-7 w-auto" src="./powerloom-logo.svg" alt="PowerLoom">
+            </button>
+          </div>
+          <div class="hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8">
+            <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+            <a href="/" class="{slug == '' ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium" aria-current="page">
+              Overview
+            </a>
 
             <a href="/assets" class="{slug == 'pairs' ? 'border-indigo-500 text-gray-900' : 'border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700'} inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
              Assets
@@ -195,46 +195,46 @@
            <!--
              Modal panel, show/hide based on modal state.
 
-             Entering: "ease-out duration-300"
-               From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-               To: "opacity-100 translate-y-0 sm:scale-100"
-             Leaving: "ease-in duration-200"
-               From: "opacity-100 translate-y-0 sm:scale-100"
-               To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
-           -->
-           <div class="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full sm:p-6">
-             <div>
-               <div class="mx-auto flex items-center justify-center">
-                 <img class="h-40" src="./Powerloom-logo.svg" alt="PowerLoom logo">
-               </div>
-               <div class="text-center">
-                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">{APP_NAME} Info by PowerLoom Protocol</h3>
-                 <div class="mt-2">
-                   <p class="text-sm text-gray-500">We snapshot on-chain data from <a href="{INFO_URL}" class="text-black hover:text-gray-500" target="_blank" rel="noopener noreferer">{APP_NAME}</a> to give you actionable insights in a transparent way. Read more about this on our <a href="https://github.com/PowerLoom/pooler" target="_blank" rel="noopener noreferer" class="text-black hover:text-gray-500">Pooler repo</a>. If something seems off, feel free to ping us on <a href="https://discord.gg/powerloom" class="text-black hover:text-gray-500" target="_blank" rel="noopener noreferer">Discord</a>.<br/><strong>New:</strong> You can now participate in Powerloom Network's Incentivized Testnet to contribute as a snapshotter! <a href="https://coinlist.co/powerloom-testnet" target="_blank" rel="noopener noreferer" class="text-black hover:text-gray-500">Visit Coinlist</a> for details.</p>
-                 </div>
-               </div>
-             </div>
-             <div class="mt-5 sm:mt-6">
-               <button type="button" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm" on:click={()=> {
-                 if (location.hash = "#about"){
-                   history.pushState("", document.title, window.location.pathname+ window.location.search);
-                 }
-                 showInfo.set(false);
-               }}>Cool 👍</button>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-     {/if}
-     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-       <!-- Replace with your content -->
-       <div class="px-4 py-8 sm:px-0">
-         <slot />
-       </div>
-       <!-- /End replace -->
-     </div>
-   </main>
+              Entering: "ease-out duration-300"
+                From: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                To: "opacity-100 translate-y-0 sm:scale-100"
+              Leaving: "ease-in duration-200"
+                From: "opacity-100 translate-y-0 sm:scale-100"
+                To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+            -->
+            <div class="relative bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:max-w-sm sm:w-full sm:p-6">
+              <div>
+                <div class="mx-auto flex items-center justify-center">
+                  <img class="h-40" src="./Powerloom-logo.svg" alt="PowerLoom logo">
+                </div>
+                <div class="text-center">
+                  <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">{APP_NAME} Info by PowerLoom Protocol</h3>
+                  <div class="mt-2">
+                    <p class="text-sm text-gray-500">We snapshot on-chain data from <a href="{INFO_URL}" class="text-black hover:text-gray-500" target="_blank" rel="noopener noreferer">{APP_NAME}</a> to give you actionable insights in a transparent way. Read more about this on our <a href="https://github.com/PowerLoom/pooler" target="_blank" rel="noopener noreferer" class="text-black hover:text-gray-500">Pooler repo</a>. If something seems off, feel free to ping us on <a href="https://discord.gg/powerloom" class="text-black hover:text-gray-500" target="_blank" rel="noopener noreferer">Discord</a>.<br/><strong>New:</strong> You can now participate in Powerloom Network's Incentivized Testnet to contribute as a snapshotter! <a href="https://coinlist.co/powerloom-testnet" target="_blank" rel="noopener noreferer" class="text-black hover:text-gray-500">Visit Coinlist</a> for details.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-5 sm:mt-6">
+                <button type="button" class="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm" on:click={()=> {
+                  if (location.hash = "#about"){
+                    history.pushState("", document.title, window.location.pathname+ window.location.search);
+                  }
+                  showInfo.set(false);
+                }}>Cool 👍</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/if}
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <!-- Replace with your content -->
+        <div class="px-4 py-8 sm:px-0">
+          <slot />
+        </div>
+        <!-- /End replace -->
+      </div>
+    </main>
 
    <!-- This example requires Tailwind CSS v2.0+ -->
    <footer class="bg-white">
